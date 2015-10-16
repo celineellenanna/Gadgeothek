@@ -12,14 +12,6 @@ import android.view.ViewGroup;
 public class RegistrationFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
-    // TODO: Rename and change types and number of parameters
-    public static RegistrationFragment newInstance(String param1, String param2) {
-        RegistrationFragment fragment = new RegistrationFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     public RegistrationFragment() {
         // Required empty public constructor
     }
