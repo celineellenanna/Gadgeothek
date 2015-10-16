@@ -9,33 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class RegistrationFragment extends Fragment {
+public class LoanFragment extends Fragment {
+
     private OnFragmentInteractionListener mListener;
 
-    // TODO: Rename and change types and number of parameters
-    public static RegistrationFragment newInstance(String param1, String param2) {
-        RegistrationFragment fragment = new RegistrationFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public RegistrationFragment() {
+    public LoanFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registration, container, false);
+        return inflater.inflate(R.layout.fragment_loan, container, false);
     }
-
 
     @Override
     public void onAttach(Activity activity) {

@@ -1,9 +1,10 @@
 package coolio.gadgeothek;
 
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,8 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
+
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Willkommen");
+        fragmentManager = getSupportFragmentManager();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -74,27 +78,38 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_gadgets) {
             getSupportActionBar().setTitle("Gadgets");
+            switchTo(new GadgetFragment());
 
         } else if (id == R.id.nav_loans) {
             getSupportActionBar().setTitle("Ausleihen");
+            switchTo(new LoanFragment());
 
         } else if (id == R.id.nav_reservation) {
             getSupportActionBar().setTitle("Reservationen");
+            switchTo(new ReservationFragment());
 
         } else if (id == R.id.nav_login) {
             getSupportActionBar().setTitle("Login");
+            switchTo(new LoginFragment());
 
         } else if (id == R.id.nav_registration) {
             getSupportActionBar().setTitle("Registration");
+            switchTo(new RegistrationFragment());
 
         } else if (id == R.id.nav_libchange) {
             getSupportActionBar().setTitle("Bibliothek wechseln");
+            switchTo(new LibraryChangeFragment());
 
         }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void switchTo(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
     }
 }

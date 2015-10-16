@@ -9,18 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class RegistrationFragment extends Fragment {
+public class LibraryChangeFragment extends Fragment {
+
+
     private OnFragmentInteractionListener mListener;
 
-    // TODO: Rename and change types and number of parameters
-    public static RegistrationFragment newInstance(String param1, String param2) {
-        RegistrationFragment fragment = new RegistrationFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public RegistrationFragment() {
+     public LibraryChangeFragment() {
         // Required empty public constructor
     }
 
@@ -33,9 +27,8 @@ public class RegistrationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registration, container, false);
+        return inflater.inflate(R.layout.fragment_library_change, container, false);
     }
-
 
     @Override
     public void onAttach(Activity activity) {
