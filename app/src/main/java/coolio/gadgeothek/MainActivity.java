@@ -49,12 +49,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (fragmentManager.getBackStackEntryCount() <= 1) {
+            pages.pop();
+            if (pages.empty()) {
                 finish();
             } else {
-                pages.pop();
-                getFragmentManager().popBackStack();
-            }        }
+                switch (pages.peek()) {
+                    case GADGET:
+                        getSupportActionBar().setTitle("Gadgets");
+                        switchTo(new GadgetFragment());
+                        break;
+                    case LOAN:
+                        getSupportActionBar().setTitle("Ausleihen");
+                        switchTo(new LoanFragment());
+                        break;
+                    case RESERVATION:
+                        getSupportActionBar().setTitle("Reservationen");
+                        switchTo(new ReservationFragment());
+                        break;
+                    case LOGIN:
+                        getSupportActionBar().setTitle("Login");
+                        switchTo(new LoginFragment());
+                        break;
+                    case REGISTRATION:
+                        getSupportActionBar().setTitle("Registration");
+                        switchTo(new RegistrationFragment());
+                        break;
+                    case LIBRARYCHANGE:
+                        getSupportActionBar().setTitle("Bibliothek wechseln");
+                        switchTo(new LibraryChangeFragment());
+                        break;
+                }
+            }
+        }
     }
 
     @Override
@@ -83,33 +109,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        switch (pages.peek()) {
-            case GADGET:
+        switch (item.getItemId()) {
+            case R.id.nav_gadgets:
                 getSupportActionBar().setTitle("Gadgets");
                 pages.push(Pages.GADGET);
                 switchTo(new GadgetFragment());
                 break;
-            case LIBRARYCHANGE:
+            case R.id.nav_loans:
                 getSupportActionBar().setTitle("Ausleihen");
                 pages.push(Pages.LOAN);
                 switchTo(new LoanFragment());
                 break;
-            case LOAN:
+            case R.id.nav_reservation:
                 getSupportActionBar().setTitle("Reservationen");
                 pages.push(Pages.RESERVATION);
                 switchTo(new ReservationFragment());
                 break;
-            case LOGIN:
+            case R.id.nav_login:
                 getSupportActionBar().setTitle("Login");
                 pages.push(Pages.LOGIN);
                 switchTo(new LoginFragment());
                 break;
-            case REGISTRATION:
+            case R.id.nav_registration:
                 getSupportActionBar().setTitle("Registration");
                 pages.push(Pages.REGISTRATION);
                 switchTo(new RegistrationFragment());
                 break;
-            case RESERVATION:
+            case R.id.nav_libchange:
                 getSupportActionBar().setTitle("Bibliothek wechseln");
                 pages.push(Pages.LIBRARYCHANGE);
                 switchTo(new LibraryChangeFragment());
