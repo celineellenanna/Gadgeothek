@@ -8,26 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+public class ReservationFragment extends Fragment {
 
-public class RegistrationFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
-    public RegistrationFragment() {
+    public ReservationFragment() {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registration, container, false);
+        return inflater.inflate(R.layout.fragment_reservation, container, false);
     }
-
 
     @Override
     public void onAttach(Activity activity) {
