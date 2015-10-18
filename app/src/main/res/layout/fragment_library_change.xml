@@ -15,7 +15,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/library_text"
         android:text="http://mge5.dev.ifs.hsr.ch/public" />
 
     <Button

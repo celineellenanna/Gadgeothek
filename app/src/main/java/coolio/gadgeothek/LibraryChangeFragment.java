@@ -7,6 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import org.w3c.dom.Text;
+
+import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 
 public class LibraryChangeFragment extends Fragment {
@@ -27,7 +33,20 @@ public class LibraryChangeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_library_change, container, false);
+        View view =  inflater.inflate(R.layout.fragment_library_change, container, false);
+        final Button button = (Button) view.findViewById(R.id.submit_library);
+        final EditText text = (EditText) view.findViewById(R.id.library_text);
+
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                LibraryService.setServerAddress(text.getText().toString());
+                button.setText(text.getText().toString());
+            }
+        });
+        return view;
     }
 
     @Override
