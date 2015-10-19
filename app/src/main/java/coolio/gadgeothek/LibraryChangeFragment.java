@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -43,7 +44,8 @@ public class LibraryChangeFragment extends Fragment {
             public void onClick(View v)
             {
                 LibraryService.setServerAddress(text.getText().toString());
-                button.setText(text.getText().toString());
+                Toast toast = Toast.makeText(getActivity(), "Bibliothek erfolgreich gewechselt", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
         return view;

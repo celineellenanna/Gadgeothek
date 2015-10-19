@@ -15,6 +15,8 @@ import android.view.MenuItem;
 
 import java.util.Stack;
 
+import ch.hsr.mge.gadgeothek.service.LibraryService;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
 
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        LibraryService.setServerAddress("http://mge1.dev.ifs.hsr.ch/public");
+
         fragmentManager = getSupportFragmentManager();
         pages.push(Pages.LOGIN);
         getSupportActionBar().setTitle("Login");
