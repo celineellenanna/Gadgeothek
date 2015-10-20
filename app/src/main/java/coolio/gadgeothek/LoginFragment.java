@@ -7,6 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import ch.hsr.mge.gadgeothek.service.Callback;
+import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 public class LoginFragment extends Fragment {
 
@@ -21,7 +26,28 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        final View root = inflater.inflate(R.layout.fragment_login, container, false);
+        final EditText name = (EditText) root.findViewById(R.id.mailInput);
+        final EditText password = (EditText) root.findViewById(R.id.passwordInput);
+        root.findViewById(R.id.loginbutton).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+
+                LibraryService.login(name.getText().toString(), password.getText().toString(), new Callback<Boolean>() {
+                    @Override
+                    public void onCompletion(Boolean input) {
+                        Toast.makeText(getActivity(),"Login successful",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(getActivity(),"Login failed",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+        return root;
     }
 
     @Override
@@ -39,5 +65,11 @@ public class LoginFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void onClick(View v)
+    {
+        EditText name = (EditText) v.findViewById(R.id.mailInput);
+        EditText password = (EditText) v.findViewById(R.id.passwordInput);
     }
 }
