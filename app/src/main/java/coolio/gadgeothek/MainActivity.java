@@ -1,6 +1,5 @@
 package coolio.gadgeothek;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,10 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Stack;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
 
     private FragmentManager fragmentManager;
+    private enum Pages{GADGET, LIBRARYCHANGE, LOAN, LOGIN, REGISTRATION, RESERVATION}
+    private Stack<Pages> pages = new Stack<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Willkommen");
         fragmentManager = getSupportFragmentManager();
+        pages.push(Pages.LOGIN);
+        getSupportActionBar().setTitle("Login");
+        switchTo(new LoginFragment());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -44,7 +49,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            pages.pop();
+            if (pages.empty()) {
+                finish();
+            } else {
+                switch (pages.peek()) {
+                    case GADGET:
+                        getSupportActionBar().setTitle("Gadgets");
+                        switchTo(new GadgetFragment());
+                        break;
+                    case LOAN:
+                        getSupportActionBar().setTitle("Ausleihen");
+                        switchTo(new LoanFragment());
+                        break;
+                    case RESERVATION:
+                        getSupportActionBar().setTitle("Reservationen");
+                        switchTo(new ReservationFragment());
+                        break;
+                    case LOGIN:
+                        getSupportActionBar().setTitle("Login");
+                        switchTo(new LoginFragment());
+                        break;
+                    case REGISTRATION:
+                        getSupportActionBar().setTitle("Registration");
+                        switchTo(new RegistrationFragment());
+                        break;
+                    case LIBRARYCHANGE:
+                        getSupportActionBar().setTitle("Bibliothek wechseln");
+                        switchTo(new LibraryChangeFragment());
+                        break;
+                }
+            }
         }
     }
 
@@ -74,32 +109,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_gadgets) {
-            getSupportActionBar().setTitle("Gadgets");
-            switchTo(new GadgetFragment());
-
-        } else if (id == R.id.nav_loans) {
-            getSupportActionBar().setTitle("Ausleihen");
-            switchTo(new LoanFragment());
-
-        } else if (id == R.id.nav_reservation) {
-            getSupportActionBar().setTitle("Reservationen");
-            switchTo(new ReservationFragment());
-
-        } else if (id == R.id.nav_login) {
-            getSupportActionBar().setTitle("Login");
-            switchTo(new LoginFragment());
-
-        } else if (id == R.id.nav_registration) {
-            getSupportActionBar().setTitle("Registration");
-            switchTo(new RegistrationFragment());
-
-        } else if (id == R.id.nav_libchange) {
-            getSupportActionBar().setTitle("Bibliothek wechseln");
-            switchTo(new LibraryChangeFragment());
-
+        switch (item.getItemId()) {
+            case R.id.nav_gadgets:
+                getSupportActionBar().setTitle("Gadgets");
+                pages.push(Pages.GADGET);
+                switchTo(new GadgetFragment());
+                break;
+            case R.id.nav_loans:
+                getSupportActionBar().setTitle("Ausleihen");
+                pages.push(Pages.LOAN);
+                switchTo(new LoanFragment());
+                break;
+            case R.id.nav_reservation:
+                getSupportActionBar().setTitle("Reservationen");
+                pages.push(Pages.RESERVATION);
+                switchTo(new ReservationFragment());
+                break;
+            case R.id.nav_login:
+                getSupportActionBar().setTitle("Login");
+                pages.push(Pages.LOGIN);
+                switchTo(new LoginFragment());
+                break;
+            case R.id.nav_registration:
+                getSupportActionBar().setTitle("Registration");
+                pages.push(Pages.REGISTRATION);
+                switchTo(new RegistrationFragment());
+                break;
+            case R.id.nav_libchange:
+                getSupportActionBar().setTitle("Bibliothek wechseln");
+                pages.push(Pages.LIBRARYCHANGE);
+                switchTo(new LibraryChangeFragment());
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
