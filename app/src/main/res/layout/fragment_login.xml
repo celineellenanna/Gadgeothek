@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/mailInput" />
+            android:id="@+id/mailInput"
+            android:text="m@hsr.ch" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,7 +36,8 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/passwordInput" />
+            android:id="@+id/passwordInput"
+            android:text="12345" />
 
         <Button
             android:layout_width="match_parent"

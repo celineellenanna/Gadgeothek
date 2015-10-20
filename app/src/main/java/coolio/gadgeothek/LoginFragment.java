@@ -36,7 +36,10 @@ public class LoginFragment extends Fragment {
                 LibraryService.login(name.getText().toString(), password.getText().toString(), new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean input) {
-                        Toast.makeText(getActivity(),"Login successful",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
+
+                        MainActivity activity = (MainActivity) getActivity();
+                        activity.switchTo(new GadgetFragment());
                     }
 
                     @Override
