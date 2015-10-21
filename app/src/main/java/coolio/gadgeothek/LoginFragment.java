@@ -70,9 +70,4 @@ public class LoginFragment extends Fragment {
         mListener = null;
     }
 
-    public void onClick(View v)
-    {
-        EditText name = (EditText) v.findViewById(R.id.mailInput);
-        EditText password = (EditText) v.findViewById(R.id.passwordInput);
-    }
 }

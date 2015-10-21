@@ -38,14 +38,13 @@ public class GadgetFragment extends Fragment {
         LibraryService.getGadgets(new Callback<List<Gadget>>() {
             @Override
             public void onCompletion(List<Gadget> input) {
-                Toast.makeText(getActivity(),"gadget test worked", Toast.LENGTH_SHORT).show();
                 GadgetRVAdapter adapter = new GadgetRVAdapter(input);
                 rv.setAdapter(adapter);
             }
 
             @Override
             public void onError(String message) {
-                Toast.makeText(getActivity(),"gadget test failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Get gadget failed", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
@@ -69,5 +68,11 @@ public class GadgetFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        getActivity().setTitle("Gadget");
     }
 }

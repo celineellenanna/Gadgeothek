@@ -33,6 +33,10 @@ public class GadgetRVAdapter extends RecyclerView.Adapter<GadgetViewHolder>{
     public void onBindViewHolder(GadgetViewHolder gadgetViewHolder, int i) {
         gadgetViewHolder.name.setText(gadgets.get(i).getName());
         gadgetViewHolder.manufacturer.setText(gadgets.get(i).getManufacturer());
+        gadgetViewHolder.condition.setText(gadgets.get(i).getCondition().toString());
+        gadgetViewHolder.price.setText(""+gadgets.get(i).getPrice());
+        //gadgetViewHolder.inventoryNumber.setText(gadgets.get(i).getInventoryNumber());
+
     }
 
     @Override
