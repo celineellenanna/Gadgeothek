@@ -10,11 +10,11 @@ import java.util.List;
 
 import ch.hsr.mge.gadgeothek.domain.Gadget;
 
-public class GadgetRVAdapter extends RecyclerView.Adapter<GadgetViewHolder>{
+public class GadgetAdapter extends RecyclerView.Adapter<GadgetViewHolder>{
 
     List<Gadget> gadgets;
 
-    GadgetRVAdapter(List<Gadget> gadgets){
+    GadgetAdapter(List<Gadget> gadgets){
         this.gadgets = gadgets;
     }
 
@@ -34,7 +34,7 @@ public class GadgetRVAdapter extends RecyclerView.Adapter<GadgetViewHolder>{
         gadgetViewHolder.name.setText(gadgets.get(i).getName());
         gadgetViewHolder.manufacturer.setText(gadgets.get(i).getManufacturer());
         gadgetViewHolder.condition.setText(gadgets.get(i).getCondition().toString());
-        gadgetViewHolder.price.setText(""+gadgets.get(i).getPrice());
+        gadgetViewHolder.price.setText("" + gadgets.get(i).getPrice());
         //gadgetViewHolder.inventoryNumber.setText(gadgets.get(i).getInventoryNumber());
 
     }

@@ -1,7 +1,6 @@
 package coolio.gadgeothek;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,7 +37,7 @@ public class GadgetFragment extends Fragment {
         LibraryService.getGadgets(new Callback<List<Gadget>>() {
             @Override
             public void onCompletion(List<Gadget> input) {
-                GadgetRVAdapter adapter = new GadgetRVAdapter(input);
+                GadgetAdapter adapter = new GadgetAdapter(input);
                 rv.setAdapter(adapter);
             }
 
@@ -50,9 +49,6 @@ public class GadgetFragment extends Fragment {
         return view;
     }
 
-    public void listGadgets(List<Gadget> liste){
-
-    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -68,11 +64,5 @@ public class GadgetFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        getActivity().setTitle("Gadget");
     }
 }

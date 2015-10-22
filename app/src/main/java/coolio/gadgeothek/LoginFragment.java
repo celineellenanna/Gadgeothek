@@ -37,14 +37,13 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onCompletion(Boolean input) {
                         Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
-
                         MainActivity activity = (MainActivity) getActivity();
                         activity.switchTo(new GadgetFragment());
                     }
 
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(getActivity(),"Login failed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Login failed", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

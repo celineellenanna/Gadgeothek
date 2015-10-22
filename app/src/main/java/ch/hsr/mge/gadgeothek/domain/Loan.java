@@ -46,6 +46,17 @@ public class Loan {
         return cal.getTime();
     }
 
+    public int getDaysToReturn(){
+        Calendar cal_overdue = Calendar.getInstance();
+        Calendar cal_now = Calendar.getInstance();
+        cal_overdue.setTime(overDueDate());
+        long msOverdue = cal_overdue.getTimeInMillis();
+        long msNow = cal_now.getTimeInMillis();
+        long periodSeconds = (msOverdue - msNow) / 1000;
+        long elapsedDays = periodSeconds / 60 / 60 / 24;
+        return (int)elapsedDays;
+    }
+
     public Gadget getGadget() {
         return gadget;
     }

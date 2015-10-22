@@ -10,7 +10,6 @@ public class GadgetViewHolder extends RecyclerView.ViewHolder {
     TextView name;
     TextView manufacturer;
     TextView price;
-    //TextView inventoryNumber;
     TextView condition;
 
     GadgetViewHolder(View itemView) {
@@ -19,7 +18,6 @@ public class GadgetViewHolder extends RecyclerView.ViewHolder {
         name = (TextView)itemView.findViewById(R.id.gadget_name);
         manufacturer = (TextView)itemView.findViewById(R.id.gadget_manufacturer);
         price = (TextView)itemView.findViewById(R.id.gadget_price);
-        //inventoryNumber = (TextView)itemView.findViewById(R.id.gadget_inventoryNr);
         condition = (TextView)itemView.findViewById(R.id.gadget_condition);
     }
 }
