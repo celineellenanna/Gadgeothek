@@ -4,9 +4,19 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.List;
+
+import ch.hsr.mge.gadgeothek.domain.Gadget;
+import ch.hsr.mge.gadgeothek.domain.Reservation;
+import ch.hsr.mge.gadgeothek.service.Callback;
+import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 public class ReservationFragment extends Fragment {
 
@@ -21,7 +31,23 @@ public class ReservationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reservation, container, false);
+        View view = inflater.inflate(R.layout.fragment_reservation, container, false);
+        final RecyclerView rv = (RecyclerView) view.findViewById(R.id.reservation_recyclerView);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        rv.setLayoutManager(llm);
+        LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
+            @Override
+            public void onCompletion(List<Reservation> input) {
+                ReservationAdapter adapter = new ReservationAdapter(input);
+                rv.setAdapter(adapter);
+            }
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(getActivity(), "Get list failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return view;
     }
 
     @Override
