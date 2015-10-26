@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardUseCompatPadding="true" >
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -31,16 +39,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Verfügbar"
-        android:id="@+id/reservation_available"
-        android:checked="true"
-        android:clickable="false"
-        android:layout_below="@+id/textView10"
-        android:layout_toLeftOf="@+id/reservation_delete"
-        android:layout_toStartOf="@+id/reservation_delete" />
+
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -52,25 +51,16 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text=" in Warteschlange"
-        android:id="@+id/textView10"
-        android:layout_alignParentTop="true"
+        android:text="Warteschlange"
+        android:id="@+id/reservation_waiting_position"
+        android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/reservation_delete"
         android:layout_toStartOf="@+id/reservation_delete" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="1."
-        android:id="@+id/reservation_waiting_position"
-        android:layout_alignTop="@+id/textView10"
-        android:layout_toLeftOf="@+id/textView10"
-        android:layout_toStartOf="@+id/textView10" />
-
 </RelativeLayout>
-
+</android.support.v7.widget.CardView>

@@ -3,12 +3,14 @@ package coolio.gadgeothek;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
@@ -38,13 +40,20 @@ public class ReservationFragment extends Fragment {
         LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
             @Override
             public void onCompletion(List<Reservation> input) {
-                ReservationAdapter adapter = new ReservationAdapter(input);
+                ReservationAdapter adapter = new ReservationAdapter(input, (MainActivity) getActivity());
                 rv.setAdapter(adapter);
             }
 
             @Override
             public void onError(String message) {
                 Toast.makeText(getActivity(), "Get list failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        FloatingActionButton floatingButton = (FloatingActionButton) view.findViewById(R.id.fab);
+        floatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "New Item", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
