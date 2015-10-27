@@ -81,20 +81,28 @@ public class RegistrationFragment extends Fragment {
 
         root.findViewById(R.id.registerbutton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                LibraryService.register(email.getText().toString(), password1.getText().toString(), name.getText().toString(), studentid.getText().toString(), new Callback<Boolean>() {
-                    @Override
-                    public void onCompletion(Boolean input) {
-                        Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
+                if(!isValidEmail(email.getText().toString())){
+                    Toast.makeText(getActivity(), "E-Mail is not valid!", Toast.LENGTH_SHORT).show();
+                }else if(password1.getText().toString().length() < 8 ){
+                    Toast.makeText(getActivity(), "Password needs at least 8 Characters.", Toast.LENGTH_SHORT).show();
+                }
 
-                        MainActivity activity = (MainActivity) getActivity();
-                        activity.switchTo(new LoginFragment());
-                    }
+                else {
+                    LibraryService.register(email.getText().toString(), password1.getText().toString(), name.getText().toString(), studentid.getText().toString(), new Callback<Boolean>() {
+                        @Override
+                        public void onCompletion(Boolean input) {
+                            Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
 
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(getActivity(),"Registration failed",Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            MainActivity activity = (MainActivity) getActivity();
+                            activity.switchTo(new LoginFragment());
+                        }
+
+                        @Override
+                        public void onError(String message) {
+                            Toast.makeText(getActivity(), "Registration failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
 
             }
         });

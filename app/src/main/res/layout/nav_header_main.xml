@@ -14,11 +14,11 @@
         android:src="@android:drawable/sym_def_app_icon" android:id="@+id/nav_image" />
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing" android:text="Anonymous"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:id="@+id/nav_name"/>
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="anonymous@example.com" android:id="@+id/nav_mail" />
+        android:id="@+id/nav_mail" />
 
 </LinearLayout>
